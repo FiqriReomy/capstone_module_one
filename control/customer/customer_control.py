@@ -29,7 +29,7 @@ def update_user_cart(select_product,user_cart, quantity, condition):
 
 def add_to_cart(mycart, product, users, quantity):
     user_id = users[0]['user_id']
-    product_id = product['id']
+    product_id = product['product_id']
     product_name = product['name']
     product_price = product['price']
     item_cart = list(filter(lambda x:x['product_id'] == product_id, mycart))

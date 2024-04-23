@@ -14,27 +14,27 @@ def customer_dashboard_menu(users):
         user_input_choice = support.user_input_choice()
         
         if user_input_choice == "1":
-            # support.loading_animation()
+            support.clean_screen()
             account.account_info(users)
             
         elif user_input_choice == "2":
-            # support.loading_animation()
+            support.clean_screen()
             balance.balance_info(users)
 
         elif user_input_choice == "3":
-            # support.loading_animation()
+            support.clean_screen()
             shop.shopping_list(users)
 
         elif user_input_choice == "4":
-            # support.loading_animation()
+            support.clean_screen()
             cart.shopping_cart(users)
                 
         elif user_input_choice == "5":
-            # support.loading_animation()
+            support.clean_screen()
             history.purchase_history(users)
             
         elif user_input_choice == "0":
-            # support.loading_animation()
+            support.clean_screen()
             break
 
         else:

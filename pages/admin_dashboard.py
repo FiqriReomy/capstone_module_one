@@ -11,20 +11,21 @@ def admin_dashboard_menu(users):
         user_input_choice = support.user_input_choice()
 
         if user_input_choice == "1":
-            # support.loading_animation()
+            support.clean_screen()
             product.product_list()
 
         elif user_input_choice == "2":
-            # support.loading_animation()
+            support.clean_screen()
             customer.customer_list()
 
         elif user_input_choice == "3":
-            # support.loading_animation()
+            support.clean_screen()
             record.sales_record()
 
         elif user_input_choice == "0":
-            # support.loading_animation()
+            support.clean_screen()
             break
 
         else:
+            support.clean_screen()
             support.error_message()

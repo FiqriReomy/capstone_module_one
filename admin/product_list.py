@@ -7,6 +7,7 @@ import control.general.general_control as general
 import control.admin.admin_statement as statement
 
 def product_list():
+    products = cf.products
     while True :
         option.product_list_option()
         user_input_choice = support.user_input_choice()
@@ -80,7 +81,6 @@ def product_list():
                 support.error_message()
 
         elif user_input_choice == "3":
-            products = cf.products
             page = 0
             total_page = math.ceil(len(products) / 5)
             general.show_product_list(products, page, total_page)
@@ -96,18 +96,22 @@ def product_list():
                 if status == True:
                     cf.products.pop(product_index - 1)
                     cf.products_save()
+                    support.clean_screen()
                     support.success_message('Product is deleted')  
                     
                 elif status == False :
                     support.clean_screen()
                     
                 else :
+                    support.clean_screen()
                     support.error_message()
                     
             elif result and product_index > len(products) or product_index == 0 :
+                support.clean_screen()
                 support.error_message('Product number is not on the list')
             
             else  :
+                support.clean_screen()
                 support.error_message()
             
         elif user_input_choice == "4":
@@ -122,11 +126,11 @@ def product_list():
                     break
                 
                 elif user_input_choice =='1':
-                    sort_product = general.sort_product('stock', False)
+                    sort_product = general.products_filter(params='stock', order=False)
                     statement.pagination_product('stock', sort_product)
                 
                 elif user_input_choice == '2':
-                    sort_product = general.sort_product('price', False)
+                    sort_product = general.products_filter(params='price', order=False)
                     page = 0
                     statement.pagination_product('price', sort_product)
                 else :
@@ -148,23 +152,15 @@ def product_list():
                     if len(filter_product) == 0 :
                         support.error_message(f" '{product_name}' is not exist ")
                     else :
-                        statement.pagination_product('name', filter_product)
+                        statement.pagination_product(sort_type='name', sort_product=filter_product ,product_name=product_name)
                     
                 elif user_input_choice == '2':
                     min_price = support.user_input_choice("Enter product min price : ")
                     max_price = support.user_input_choice("Enter product max price : ")
                     filter_product = general.products_filter(min_price=int(min_price), max_price=int(max_price))
-                    statement.pagination_product('price', filter_product)
-                    
-                    
+                    statement.pagination_product(sort_type='name', sort_product=filter_product ,product_name=product_name)
+                       
                 else :
                         support.error_message()         
         else :
             support.error_message() 
-
-
-
-# def products_filter(product_name=None, category=None, min_price=None, max_price=None, params='name', order=False):
-#     filter_product = list(filter(lambda product: filter_params(product_name, category, min_price, max_price, product), cf.products))
-#     filter_product_sorted = sorted(filter_product, key=lambda x: x[params], reverse=order) 
-#     return filter_product_sorted

@@ -62,3 +62,14 @@ def pagination_option( page, current_page, total_page):
 3. Ascending        6. Prev Page
 """)
          
+    
+def sales_record_option():
+    print("""
+0. Main menu
+1. Total Daily Sales
+2. Total Weekly Sales
+3. Total Monthly Sales
+3. Delete Product
+4. Sort Product
+5. Filter Product
+          """)

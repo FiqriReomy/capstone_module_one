@@ -1,10 +1,11 @@
 import math
+import config.config as cf
 import support.support as support
 import control.admin.admin_option as option
 import control.general.general_control as general
 
-def pagination_product(sort_type, sort_product):
-    support.clean_screen()
+def pagination_product(sort_type='name', sort_product=cf.products, product_name=None):
+    # support.clean_screen()
     sort_product
     page = 0
     while True :
@@ -26,11 +27,11 @@ def pagination_product(sort_type, sort_product):
                 support.clean_screen()
                         
             elif user_input_choice == "3":
-                sort_product = general.sort_product(sort_type, False)
+                sort_product = general.products_filter(params=sort_type, order=False,product_name=product_name)
                 support.clean_screen()
                         
             elif user_input_choice == "4":
-                sort_product = general.sort_product(sort_type, True)
+                sort_product = general.products_filter(params=sort_type, order=True, product_name=product_name)
                 support.clean_screen()
                                
             elif user_input_choice == "5" and current_page < total_page :

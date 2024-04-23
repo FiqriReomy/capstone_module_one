@@ -83,3 +83,12 @@ def account_info_option():
 2. Edit Password
 """)
     
+    
+def shopping_list_option():
+    print("""
+0. Main Menu
+1. Add product to Cart
+2. Sort Product
+3. Filter Product
+""")
+    

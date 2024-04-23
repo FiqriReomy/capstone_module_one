@@ -18,15 +18,6 @@ def products_filter(product_name=None, category=None, min_price=None, max_price=
     return filter_product_sorted
 
 
-def sort_product(params, order=False):
-        sorted_product = sorted(cf.products, key=lambda x: x[params], reverse=order) 
-        return sorted_product
-    
-def filter_product(params, order=False):
-    filtered_product = [product for product in cf.products if params in product['name']]
-    sorted_product = sorted(filtered_product, key=lambda x: x['name'], reverse=order)
-    return sorted_product
-
 
 def show_product_list(products, start_index, total_page):
     headers = ["No", "Name", "Price", "Stock", "Category"]
@@ -41,8 +32,7 @@ def show_product_list(products, start_index, total_page):
         ])
     print(tabulate(data, headers=headers, tablefmt="grid"))
     print(f"Page {(start_index // 5)+1 } of {total_page}")
-
-        
+  
 def list_categories():
     unique_categories = set()
     for product in cf.products:
@@ -56,6 +46,6 @@ def show_categories(categories):
     
 def update_product_qty(product_id, quantity):
     for product in cf.products:
-        if product['id'] == product_id['id']:
+        if product['product_id'] == product_id['product_id']:
             product['stock'] -= quantity
             cf.products_save()
