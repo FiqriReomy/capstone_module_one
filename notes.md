@@ -1,1 +1,1 @@
-project notes
+project foot note
