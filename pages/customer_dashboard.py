@@ -1,8 +1,9 @@
-import customer.balance as balance
+
 import support.support as support
+import customer.balance as balance
 import customer.account as account
-import customer.shopping_list as shop
 import customer.shopping_cart as cart
+import customer.shopping_list as shop
 import customer.purchase_history as history
 import control.customer.customer_option as option
 

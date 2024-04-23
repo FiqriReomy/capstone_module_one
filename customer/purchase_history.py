@@ -1,6 +1,6 @@
-import control.customer.customer_control as control
 import support.support as support
-import customer.shopping_list as shop
+import control.customer.customer_control as control
+
 def purchase_history(users) :
     
     user_history = control.get_user_history(users[0]['user_id'])

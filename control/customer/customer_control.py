@@ -74,14 +74,14 @@ def remove_checkout_item(checkout_item):
 def update_product_sold(checkout_item):
     for item in cf.products :
         for check in checkout_item:
-            if item['id'] == check['product_id']:
+            if item['product_id'] == check['product_id']:
                 item['sold'] += check['quantity']
                 cf.products_save()
                 
 def update_product_quantity(selected_item, users):
     for item in cf.products :
         for selected in selected_item:
-            if item['id'] == selected['product_id']:
+            if item['product_id'] == selected['product_id']:
                 item['stock'] += selected['quantity']
                 for cart in cf.cart :
                     if cart['user_id'] != users and cart['product_id'] != selected['product_id']:

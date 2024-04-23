@@ -11,17 +11,19 @@ def login_menu():
             break
         
         elif result == "1":
+            support.clean_screen()
             support.error_message(message)
         
         elif result == "2" :
+            support.clean_screen()
             support.error_message(message)
 
         elif result == "3":
-            # support.loading_animation()
+            support.clean_screen()
             customer.customer_dashboard_menu(message)
 
         elif result == "4":
-            # support.loading_animation()
+            support.clean_screen()
             admin.admin_dashboard_menu(message)
 
         else :

@@ -8,12 +8,12 @@ while True :
     user_input_choice = support.user_input_choice()
 
     if user_input_choice == "0":
-        # support.loading_animation()
+        support.clean_screen()
         support.success_message("Thank you for using our application")
         break
 
     elif user_input_choice == "1":
-        # support.loading_animation()
+        support.clean_screen()
         login.login_menu()
         
     else :

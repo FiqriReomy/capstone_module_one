@@ -1,9 +1,7 @@
 def admin_dashboard_option():
     print("""
-0. LOG OUT
-1. PRODUCT LIST
-2. CUSTOMER LIST
-3. SALES RECORD
+0. Log out
+1. Product List
           """)
     
 def product_list_option():
@@ -15,7 +13,6 @@ def product_list_option():
 4. Sort Product
 5. Filter Product
           """)
-    
     
 def filter_search_option():
     print("""

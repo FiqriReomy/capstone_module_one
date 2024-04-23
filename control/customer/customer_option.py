@@ -90,5 +90,6 @@ def shopping_list_option():
 1. Add product to Cart
 2. Sort Product
 3. Filter Product
+4. Search By Category
 """)
     

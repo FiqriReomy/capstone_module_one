@@ -1,13 +1,12 @@
 import support.support as support
-import control.customer.customer_control as control
 import control.customer.customer_option as option
+import control.customer.customer_control as control
 
 def account_info(users):
     while True :
         option.account_info_option()
         user_input_choice = support.user_input_choice()
         
-
         if user_input_choice == "0":
             break
     

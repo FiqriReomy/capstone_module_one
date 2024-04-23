@@ -10,7 +10,7 @@ def shopping_cart(users):
         user_cart = control.get_user_cart(users)
       
         if len(user_cart) == 0 :
-            support.error_message('Your cart is empty, please add item from shopping list') 
+            support.error_message('Your cart is empty') 
             break
         else :
             control.show_cart(user_cart)
@@ -21,10 +21,9 @@ def shopping_cart(users):
             if isdigits and value == 1:
                 checkout = True
                 while checkout:
-                    # support.clean_screen()
+                    support.clean_screen()
                     control.show_cart(user_cart)
-                    # PR : SETELAH SEMUA ITEM MASUK KE CHECKOUT MISAL DI CART ADA 5, TRUS UDAH PILIH 5. GA ADA TOMBOL NEXT NYA KALO KITA MASUKIN INPUT SAMA
-                    user_input_choice = support.user_input_choice('Select product number you want to proceed or 0 cancel :')
+                    user_input_choice = support.user_input_choice('Select product number or 0 cancel :')
                     isdigits, value = support.input_check(user_input_choice)
                 
                     if isdigits and value <= len(user_cart) and value != 0 :
@@ -36,9 +35,9 @@ def shopping_cart(users):
                     
                         else :
                             while True :
-                                # support.clean_screen()  
+                                support.clean_screen()  
                                 total_amount = control.show_checkout(checkout_cart)
-                                user_input_choice = support.user_input_choice('Press (1) to proceed payment or (0) to checkout another cart :')
+                                user_input_choice = support.user_input_choice('Press (1) to proceed or (0) to checkout cart :')
                                 if user_input_choice == '0' :
                                     break
                             
@@ -46,7 +45,7 @@ def shopping_cart(users):
                                     balance = support.get_balance_info(users)
                                 
                                     if balance['balance'] <= total_amount :
-                                        support.error_message('Insufficient Funds !!! Please top up your balance')
+                                        support.error_message('Insufficient Funds !!! Top up your balance')
                                         checkout_cart = list()
                                         checkout = False
                                         break
@@ -56,7 +55,7 @@ def shopping_cart(users):
                                         control.remove_checkout_item(checkout_cart)
                                         control.update_product_sold(checkout_cart)
                                         control.update_purchase_history(checkout_cart)
-                                        support.success_message("Purchase is success, Your Balance now :", balance['balance'])
+                                        support.success_message("Purchase is success, Your Balance :", balance['balance'])
                                         checkout = False
                                         break
                                 else :
