@@ -1,10 +1,10 @@
+import math
+import config.config as cf
 import support.support as support
 import control.admin.admin_option as option
-import config.config as cf
-import math
 import control.admin.admin_control as control
 import control.general.general_control as general
-import control.general.general_option as general_option
+import control.admin.admin_statement as statement
 
 def product_list():
     while True :
@@ -21,7 +21,6 @@ def product_list():
             if result == None :
                 support.error_message(message)
                 
-            
             elif not result :
                 support.error_message(message)
             
@@ -29,14 +28,13 @@ def product_list():
                 category = support.user_input_choice("Input product category : ")
                 price = support.user_input_choice("Input product price : ")
                 result1, product_price = support.input_check(price)
-                
-                print(product_price)
+
                 if result1 and product_price != 0 : 
                     stock = support.user_input_choice("Input product stock : ")    
-                    result2, product_qty = support.input_check(stock)
+                    result2, product_stock = support.input_check(stock)
                     
-                    if result2 and product_qty != 0 :
-                        control.create_and_update(product_name, category, product_qty,  stock)
+                    if result2 and product_stock != 0 :
+                        control.create_and_update(product_name, category, product_price, product_stock)
                         support.success_message(message )
                         
                     elif not result2:
@@ -52,35 +50,35 @@ def product_list():
             general.show_product_list(products, page, total_page)
             product_number = support.user_input_choice("Input product number  : ") 
             result, product_index = support.input_check(product_number)
-            product_id = products[product_index-1]['product_id']
-            product = control.get_product_by_id(product_id)
-
-            if result and len(product) == 0  :
-                support.error_message('Product number is not on the list')
-                
-            elif result and len(product) != 0 :
+           
+   
+            if result and  product_index <= len(products) and product_index != 0 :
+                product_id = products[product_index-1]['product_id']
+                name = support.user_input_choice('Input new product name : ')
                 category = support.user_input_choice("Input new product category : ")
                 price = support.user_input_choice("Input new product price : ")
                 result1, product_price = support.input_check(price)
-
-                if result1 and product_price != 0 : 
+                 
+                if result1  : 
                     stock = support.user_input_choice("Input new product stock : ")    
-                    result2, product_qty = support.input_check(stock)
+                    result2, product_stock = support.input_check(stock)
                     
-                    if result2 and product_qty != 0 :
-                        control.create_and_update(product['name'], product['category'],product['price'], product['stock'], product['product_id'] )
+                    if result2 and product_stock != 0 :
+                        control.create_and_update(name, category, product_price, product_stock, product_id )
                         support.success_message('Product update is success')
                         
-                    elif not result2:
+                    else :
                         support.error_message("Invalid stock input") 
-
-                elif not result1 :
-                    support.error_message("Invalid price input")  
-                
+                        
+                else :
+                    support.error_message('invalid price input')
+                    
+            elif result and  product_index > len(products) :
+                support.error_message('Product number is out of list')  
+                   
             else :
                 support.error_message()
-                
-                
+
         elif user_input_choice == "3":
             products = cf.products
             page = 0
@@ -88,6 +86,7 @@ def product_list():
             general.show_product_list(products, page, total_page)
             product_number = support.user_input_choice("Input product number  : ") 
             result, product_index = support.input_check(product_number)
+            statement.pagination_product('stock', sort_product)
             
             if result and product_index <= len(products) and product_index != 0:
                 product_id = products[product_index-1]['product_id']
@@ -110,35 +109,62 @@ def product_list():
             
             else  :
                 support.error_message()
-
             
         elif user_input_choice == "4":
-            while True :
-                general_option.product_list_sort_option()
+            first_condition = True
+            while first_condition :
+                support.clean_screen()
+                option.sort_by_option()
                 user_input_choice = support.user_input_choice()
                 
                 if user_input_choice == '0':
                     support.clean_screen()
                     break
                 
-                elif user_input_choice == '1':
-                    product_sorted = general.products_filter(params='stock')
-                    general.show_product_list(product_sorted, 1, 5)
-                    
+                elif user_input_choice =='1':
+                    sort_product = general.sort_product('stock', False)
+                    statement.pagination_product('stock', sort_product)
+                
                 elif user_input_choice == '2':
-                    print('price')
-                    
+                    sort_product = general.sort_product('price', False)
+                    page = 0
+                    statement.pagination_product('price', sort_product)
                 else :
-                    support.clean_screen()
                     support.error_message()
                     
-            
         elif user_input_choice == "5":
-            print('FILTER PRODUCT')
-            
+            while True :
+                support.clean_screen()
+                option.filter_search_option()
+                user_input_choice = support.user_input_choice()
+                    
+                if user_input_choice == '0':
+                    support.clean_screen()
+                    break
+                    
+                elif user_input_choice =='1':
+                    product_name = support.user_input_choice("Enter product name : ")
+                    filter_product = general.products_filter(product_name=product_name)
+                    if len(filter_product) == 0 :
+                        support.error_message(f" '{product_name}' is not exist ")
+                    else :
+                        statement.pagination_product('name', filter_product)
+                    
+                elif user_input_choice == '2':
+                    min_price = support.user_input_choice("Enter product min price : ")
+                    max_price = support.user_input_choice("Enter product max price : ")
+                    filter_product = general.products_filter(min_price=int(min_price), max_price=int(max_price))
+                    statement.pagination_product('price', filter_product)
+                    
+                    
+                else :
+                        support.error_message()         
         else :
             support.error_message() 
 
 
 
-
+# def products_filter(product_name=None, category=None, min_price=None, max_price=None, params='name', order=False):
+#     filter_product = list(filter(lambda product: filter_params(product_name, category, min_price, max_price, product), cf.products))
+#     filter_product_sorted = sorted(filter_product, key=lambda x: x[params], reverse=order) 
+#     return filter_product_sorted

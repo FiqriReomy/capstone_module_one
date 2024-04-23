@@ -17,6 +17,17 @@ def products_filter(product_name=None, category=None, min_price=None, max_price=
     filter_product_sorted = sorted(filter_product, key=lambda x: x[params], reverse=order) 
     return filter_product_sorted
 
+
+def sort_product(params, order=False):
+        sorted_product = sorted(cf.products, key=lambda x: x[params], reverse=order) 
+        return sorted_product
+    
+def filter_product(params, order=False):
+    filtered_product = [product for product in cf.products if params in product['name']]
+    sorted_product = sorted(filtered_product, key=lambda x: x['name'], reverse=order)
+    return sorted_product
+
+
 def show_product_list(products, start_index, total_page):
     headers = ["No", "Name", "Price", "Stock", "Category"]
     data = []

@@ -28,12 +28,13 @@ def exist_product_name(name):
 
     exist_product = list(filter(lambda x:x['name'] == name, cf.products))
    
-    
     if len(exist_product) != 0:
         return None, 'Product name is already exist'
+    
     else  :
         if len(name) < 5 :
             return False, 'Product name character less than 5 character' 
+        
         else : 
             return True , f'{name} is successfully added as new product' 
     

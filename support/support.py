@@ -42,6 +42,7 @@ def input_check(params):
     if params.isdigit():
         value = int(params)
         return True, value
+    
     else : 
         return False, params
     
