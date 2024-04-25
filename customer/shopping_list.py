@@ -20,6 +20,7 @@ def shopping_list(users):
         user_input_choice = support.user_input_choice()
 
         if user_input_choice == "0":
+            support.clean_screen()
             break
 
         elif user_input_choice == "1":
@@ -32,13 +33,16 @@ def shopping_list(users):
                 isdigits, product_number = support.input_check(user_input_choice)
                 
                 if isdigits and product_number <= len(products) and product_number > 0 :
+                    
                     selected_product = cf.products[product_number-1]
                     product_stock = selected_product['stock']
+                    
                     while True :
                         user_input_choice = support.user_input_choice('Enter product quantity : ')
                         isdigits, product_qty = support.input_check(user_input_choice)
 
                         if isdigits and product_qty <= product_stock and product_qty > 0 :
+                            
                             support.clean_screen()
                             user_cart = customer.get_user_cart(users)  
                             customer.add_to_cart(user_cart,selected_product, users, product_qty)
@@ -48,28 +52,33 @@ def shopping_list(users):
                             break
                             
                         elif isdigits and product_qty > product_stock :
+                            
                             support.clean_screen()
                             support.error_message('Product is out stock')
                             purchase = False
                             break
                             
                         else :
+                            
                             support.error_message()
                             purchase = False
                             break
                             
                 elif isdigits and product_number > len(products) :
+                    
                     support.clean_screen()
                     support.error_message('Product Number is out of list')
                     purchase = False
                     break
                 
                 elif isdigits and product_number == 0 :
+                    
                     support.clean_screen()
                     purchase = False
                     break
                 
                 else :
+                    
                     support.error_message()
                     purchase = False
                     break

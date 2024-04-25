@@ -2,9 +2,62 @@ import config.config as cf
 from tabulate import tabulate  # type: ignore
 import datetime
 
+    
+
+# CREATE
+def add_item_cart(selected_item):
+    [cf.cart_save() for cart in cf.cart if cart['id'] == selected_item['id']]
+    
+# READ
 def get_user_cart(users):
     user_cart = list(filter(lambda x:x['user_id'] == users[0]['user_id'],cf.cart))
     return user_cart
+
+# UPDATE 
+def update_product_qty(product_id, quantity):
+    for product in cf.products:
+        if product['product_id'] == product_id['product_id']:
+            product['stock'] -= quantity
+            cf.products_save()
+    
+# DELETE
+def delete_item_cart(selected_item):
+        for cart in cf.cart:
+            if cart['id'] == selected_item['id'] :
+                cf.cart.remove(cart)
+                cf.cart_save()
+   
+# READ
+def show_cart(user_cart):
+    headers = ["No", "Name", "Price", "Quantity", "Total"]
+    data = []
+    for index, cart in enumerate(user_cart):
+        total = cart['quantity'] * cart['price']
+        data.append([
+            index + 1,
+            cart['name'],
+            cart['price'],
+            cart['quantity'],
+            total
+        ])
+        
+    print(tabulate(data, headers=headers, tablefmt="grid"))                
+
+
+# DELETE
+def remove_checkout_item(item):
+        cf.cart = [cart for cart in cf.cart if not (cart['user_id'] == item['user_id'] and cart['product_id'] == item['product_id'])]
+        cf.cart_save()
+
+# UPDATE
+def update_product_sold(checkout_item):
+    for item in cf.products :
+        for check in checkout_item:
+            if item['product_id'] == check['product_id']:
+                item['sold'] += check['quantity']
+                cf.products_save()
+
+# UPDATE USER CART
 
 def update_user_cart(select_product,user_cart, quantity, condition):
     product_id = select_product['product_id']
@@ -27,6 +80,7 @@ def update_user_cart(select_product,user_cart, quantity, condition):
                 cf.cart_save()
             
 
+
 def add_to_cart(mycart, product, users, quantity):
     user_id = users[0]['user_id']
     product_id = product['product_id']
@@ -45,7 +99,7 @@ def add_to_cart(mycart, product, users, quantity):
                 cart['quantity'] += quantity
                 cf.cart_save()
 
-def checkout_check(checkout_cart, item, value):
+def checkout_check(checkout_cart,item, value):
     cart_item = item[value - 1]
     
 
@@ -53,55 +107,44 @@ def checkout_check(checkout_cart, item, value):
         checkout_cart.append(cart_item)
         return checkout_cart
     
+    else :
+        for existing_item in checkout_cart:
+            if existing_item['product_id'] != cart_item['product_id']:
+                checkout_cart.append(cart_item)
+                return checkout_cart  
+            else :
+                return checkout_cart
 
-    for existing_item in checkout_cart:
-        if existing_item['product_id'] == cart_item['product_id']:
-            return checkout_cart  
-    checkout_cart.append(cart_item)
-    return checkout_cart
+
+# READ
+
+def get_user_history(users):
+    user_history = list(filter(lambda x:x['user_id'] == users, cf.history))
+    return user_history
+
+def show_user_history(user_history):
+    headers = ["No", "Name", "Price", "Quantity", "date"]
+    data = []
+    for index, history in enumerate(user_history):
+        data.append([
+            index + 1,
+            history['name'],
+            history['price'],
+            history['quantity'],
+            history['date'],
+        ])
+    print(tabulate(data, headers=headers, tablefmt="grid"))
 
 
-
-def add_checkout_item(cart_item, selected_item):
-    checkout_item = [cart_item[index - 1] for index in selected_item if index <= len(cart_item)]
-    return checkout_item
-
-def remove_checkout_item(checkout_item):
-    for item in checkout_item:
-        cf.cart = [cart for cart in cf.cart if not (cart['user_id'] == item['user_id'] and cart['product_id'] == item['product_id'])]
-        cf.cart_save()
-    
-def update_product_sold(checkout_item):
-    for item in cf.products :
-        for check in checkout_item:
-            if item['product_id'] == check['product_id']:
-                item['sold'] += check['quantity']
-                cf.products_save()
                 
-def update_product_quantity(selected_item, users):
+def update_product_quantity(selected, users):
     for item in cf.products :
-        for selected in selected_item:
             if item['product_id'] == selected['product_id']:
                 item['stock'] += selected['quantity']
                 for cart in cf.cart :
                     if cart['user_id'] != users and cart['product_id'] != selected['product_id']:
                         cf.cart_save()
-                cf.products_save()
-                
-def show_cart(user_cart):
-    headers = ["No", "Name", "Price", "Quantity", "Total"]
-    data = []
-    for index, cart in enumerate(user_cart):
-        total = cart['quantity'] * cart['price']
-        data.append([
-            index + 1,
-            cart['name'],
-            cart['price'],
-            cart['quantity'],
-            total
-        ])
-        
-    print(tabulate(data, headers=headers, tablefmt="grid"))
+                cf.products_save()       
     
 def show_checkout(user_cart):
     headers = ["No", "Name", "Price", "Quantity", "Total"]
@@ -121,25 +164,6 @@ def show_checkout(user_cart):
     data.append(["", "", "", "Total Price", total_amount])
     print(tabulate(data, headers=headers, tablefmt="grid"))
     return total_amount
-
-
-def get_user_history(users):
-    user_history = list(filter(lambda x:x['user_id'] == users, cf.history))
-    return user_history
-
-def show_user_history(user_history):
-    headers = ["No", "Name", "Price", "Quantity", "date"]
-    data = []
-    for index, history in enumerate(user_history):
-        data.append([
-            index + 1,
-            history['name'],
-            history['price'],
-            history['quantity'],
-            history['date'],
-        ])
-    print(tabulate(data, headers=headers, tablefmt="grid"))
-
 
 
 def update_purchase_history(checkout_item):
@@ -175,11 +199,10 @@ def update_account_info(users, newpassword):
             break
 
 def amount_verification(amount):
-    
         if not amount.isdigit() :
             return None, 'Invalid number of input  '
     
-        elif int(amount) < 10000 or int(amount) > 1000000 :
+        elif int(amount) < 10000 or int(amount) >= 1000000 :
             return False, "Minimum amount is 10.000 and maximum is 1000.000"  
         
         elif int(amount) >= 10000 and int(amount) < 1000000 :
@@ -193,4 +216,8 @@ def update_account_info(users , newpassword) :
             cf.users_save()
     return 'Password is updated'
 
-                           
+# CREATE
+def add_checkout_item(cart_item, selected_item):
+    checkout_item = [cart_item[index - 1] for index in selected_item if index <= len(cart_item)]
+    return checkout_item
+                

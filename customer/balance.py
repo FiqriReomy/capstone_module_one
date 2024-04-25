@@ -18,10 +18,9 @@ def balance_info(users):
         elif user_input_choice == '2':
             topup_amount = support.user_input_choice("Enter amount of top up : ")
             result, message = control.amount_verification(topup_amount)
-            
             if result == True  :
                 support.clean_screen()
-                support.add_balance(balance, topup_amount)
+                support.add_balance(balance, topup_amount, 'add')
                 support.success_message(message)
             
             elif result == False  :
@@ -30,7 +29,7 @@ def balance_info(users):
                 
             else :
                 support.error_message(message)
-                support.clean_screen()
+                # support.clean_screen()
                         
         else :
             support.error_message()

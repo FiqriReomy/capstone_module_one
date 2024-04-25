@@ -126,12 +126,18 @@ def get_cart_info(user_id):
     return cart
 
 
-def add_balance(balance,amount):
+def add_balance(balance,amount,method):
     for i in cf.balance:
-        if i['balance_id'] == balance['balance_id']:
+        if i['balance_id'] == balance['balance_id'] and method == 'add':
             i['balance'] += int(amount)
             balance['balance'] = i['balance']
             cf.balance_save()
+            
+        elif i['balance_id'] == balance['balance_id'] and method == 'remove':
+            i['balance'] -= int(amount)
+            balance['balance'] = i['balance']
+            cf.balance_save()
+            
     return balance
     
     

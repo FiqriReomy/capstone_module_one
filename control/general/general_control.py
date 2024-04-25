@@ -17,8 +17,7 @@ def products_filter(product_name=None, category=None, min_price=None, max_price=
     filter_product_sorted = sorted(filter_product, key=lambda x: x[params], reverse=order) 
     return filter_product_sorted
 
-
-
+# READ
 def show_product_list(products, start_index, total_page):
     headers = ["No", "Name", "Price", "Stock", "Category"]
     data = []
@@ -49,3 +48,9 @@ def update_product_qty(product_id, quantity):
         if product['product_id'] == product_id['product_id']:
             product['stock'] -= quantity
             cf.products_save()
+            
+def password_char_verification(password) :
+    if len(password) < 8 :
+        return False, "Password must be minimum 8 character"
+    
+    

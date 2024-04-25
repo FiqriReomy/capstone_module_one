@@ -1,1 +1,5 @@
-[{"user_id": 1, "balance_id": 1, "balance": 127500}, {"user_id": 2, "balance_id": 2, "balance": 1092005}, {"user_id": 3, "balance_id": 3, "balance": 277500}]
+[
+  { "user_id": 1, "balance_id": 1, "balance": 127500 },
+  { "user_id": 2, "balance_id": 2, "balance": 0 },
+  { "user_id": 3, "balance_id": 3, "balance": 277500 }
+]

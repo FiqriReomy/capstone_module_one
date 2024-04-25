@@ -1,1 +1,263 @@
-[{"product_id": 16, "name": "grape", "price": 22500, "stock": 7, "category": "fruit", "sold": 80}, {"product_id": 17, "name": "coconut oil", "price": 130000, "stock": 29, "category": "fruit", "sold": 13}, {"product_id": 18, "name": "lychee", "price": 13500, "stock": 24, "category": "fruit", "sold": 22}, {"product_id": 5, "name": "casual shirt", "price": 60000, "stock": 30, "category": "clothes", "sold": 3}, {"product_id": 6, "name": "t-shirt", "price": 30000, "stock": 30, "category": "clothes", "sold": 2}, {"product_id": 7, "name": "laptop", "price": 7500000, "stock": 5, "category": "electronics", "sold": 0}, {"product_id": 8, "name": "smartphone", "price": 8000000, "stock": 15, "category": "electronics", "sold": 10}, {"product_id": 9, "name": "headphones", "price": 1000000, "stock": 48, "category": "electronics", "sold": 0}, {"product_id": 10, "name": "book", "price": 50000, "stock": 60, "category": "stationery", "sold": 5}, {"product_id": 11, "name": "pen", "price": 5000, "stock": 93, "category": "stationery", "sold": 8}, {"product_id": 12, "name": "notebook", "price": 20000, "stock": 40, "category": "stationery", "sold": 0}, {"product_id": 13, "name": "sneakers", "price": 70000, "stock": 26, "category": "shoes", "sold": 4}, {"product_id": 14, "name": "sandals", "price": 40000, "stock": 33, "category": "shoes", "sold": 3}, {"product_id": 15, "name": "boots", "price": 90000, "stock": 11, "category": "shoes", "sold": 8}, {"product_id": 17, "name": "coconut oil", "category": "fruit", "price": 130003, "stock": 29}, {"product_id": 19, "name": "gaming pad", "category": "electronics", "price": 34, "stock": 34}, {"product_id": 19, "name": "headset wifi", "category": "electronics", "price": 50, "stock": 50}, {"product_id": 20, "name": "apeeel", "category": "fruit", "price": 12, "stock": 12}, {"product_id": 21, "name": "baru01", "category": "baru01", "price": 10, "stock": 10}, {"product_id": 22, "name": "kucing", "category": "pet", "price": 12, "stock": 12}, {"product_id": 23, "name": "kucingku", "category": "pet", "price": 5, "stock": 5}, {"product_id": 24, "name": "kacang", "category": "food", "price": 5000, "stock": 125}, {"product_id": 25, "name": "panadol", "category": "medicine", "price": 10000, "stock": 20}]
+[
+  {
+    "product_id": 16,
+    "name": "grapes",
+    "price": 12000,
+    "stock": 12,
+    "category": "fruit",
+    "sold": 89
+  },
+  {
+    "product_id": 17,
+    "name": "orangess",
+    "price": 15000,
+    "stock": 50,
+    "category": "fruits",
+    "sold": 28
+  },
+  {
+    "product_id": 18,
+    "name": "lychee",
+    "price": 13500,
+    "stock": 13,
+    "category": "fruit",
+    "sold": 37
+  },
+  {
+    "product_id": 5,
+    "name": "casual shirt",
+    "price": 60000,
+    "stock": 26,
+    "category": "clothes",
+    "sold": 7
+  },
+  {
+    "product_id": 6,
+    "name": "t-shirt",
+    "price": 30000,
+    "stock": 20,
+    "category": "clothes",
+    "sold": 25
+  },
+  {
+    "product_id": 7,
+    "name": "laptop",
+    "price": 7500000,
+    "stock": 10,
+    "category": "electronics",
+    "sold": 0
+  },
+  {
+    "product_id": 8,
+    "name": "smartphone",
+    "price": 8000000,
+    "stock": 15,
+    "category": "electronics",
+    "sold": 10
+  },
+  {
+    "product_id": 9,
+    "name": "headphones",
+    "price": 1000000,
+    "stock": 48,
+    "category": "electronics",
+    "sold": 0
+  },
+  {
+    "product_id": 10,
+    "name": "book",
+    "price": 50000,
+    "stock": 60,
+    "category": "stationery",
+    "sold": 5
+  },
+  {
+    "product_id": 11,
+    "name": "pencil",
+    "price": 5000,
+    "stock": 93,
+    "category": "stationery",
+    "sold": 10
+  },
+  {
+    "product_id": 12,
+    "name": "notebook",
+    "price": 20000,
+    "stock": 40,
+    "category": "stationery",
+    "sold": 0
+  },
+  {
+    "product_id": 13,
+    "name": "sneakers",
+    "price": 70000,
+    "stock": 26,
+    "category": "shoes",
+    "sold": 4
+  },
+  {
+    "product_id": 14,
+    "name": "sandals",
+    "price": 40000,
+    "stock": 33,
+    "category": "shoes",
+    "sold": 3
+  },
+  {
+    "product_id": 15,
+    "name": "boots",
+    "price": 90000,
+    "stock": 11,
+    "category": "shoes",
+    "sold": 8
+  },
+  {
+    "product_id": 17,
+    "name": "orangess",
+    "category": "fruits",
+    "price": 15000,
+    "stock": 50,
+    "sold": 23
+  },
+  {
+    "product_id": 19,
+    "name": "gaming pad",
+    "category": "electronics",
+    "price": 340000,
+    "stock": 34,
+    "sold": 0
+  },
+  {
+    "product_id": 19,
+    "name": "headset wifi",
+    "category": "electronics",
+    "price": 225000,
+    "stock": 50,
+    "sold": 0
+  },
+  {
+    "product_id": 20,
+    "name": "flash disk",
+    "category": "electronics",
+    "price": 13500,
+    "stock": 12,
+    "sold": 0
+  },
+  {
+    "product_id": 21,
+    "name": "kwuini",
+    "category": "fruit",
+    "price": 10000,
+    "stock": 10,
+    "sold": 3
+  },
+  {
+    "product_id": 22,
+    "name": "paramex",
+    "category": "medicine",
+    "price": 17500,
+    "stock": 102,
+    "sold": 0
+  },
+  {
+    "product_id": 23,
+    "name": "kucing",
+    "category": "pet",
+    "price": 650000,
+    "stock": 5,
+    "sold": 1
+  },
+  {
+    "product_id": 24,
+    "name": "kacang",
+    "category": "food",
+    "price": 5000,
+    "stock": 125,
+    "sold": 0
+  },
+  {
+    "product_id": 25,
+    "name": "panadol",
+    "category": "medicine",
+    "price": 10000,
+    "stock": 120,
+    "sold": 0
+  },
+  {
+    "product_id": 26,
+    "name": "panasonic dryer",
+    "category": "electronics",
+    "price": 65000,
+    "stock": 12,
+    "sold": 0
+  },
+  {
+    "product_id": 27,
+    "name": "chocolate pancake",
+    "category": "food",
+    "price": 13400,
+    "stock": 30,
+    "sold": 0
+  },
+  {
+    "product_id": 28,
+    "name": "black pants",
+    "category": "clothes",
+    "price": 73500,
+    "stock": 5,
+    "sold": 0
+  },
+  {
+    "product_id": 29,
+    "name": "pancake durian",
+    "category": "food",
+    "price": 19500,
+    "stock": 25,
+    "sold": 0
+  },
+  {
+    "product_id": 30,
+    "name": "pancake durian",
+    "category": "food",
+    "price": 19500,
+    "stock": 15,
+    "sold": 0
+  },
+  {
+    "product_id": 31,
+    "name": "Lee cooper pants",
+    "category": "clothes",
+    "price": 119500,
+    "stock": 7,
+    "sold": 0
+  },
+  {
+    "product_id": 32,
+    "name": "strawberry pancake",
+    "category": "food",
+    "price": 27500,
+    "stock": 17,
+    "sold": 0
+  },
+  {
+    "product_id": 33,
+    "name": "apels",
+    "category": "fruits",
+    "price": 10000,
+    "stock": 12
+  },
+  {
+    "product_id": 34,
+    "name": "bottle",
+    "category": "food",
+    "price": 10000,
+    "stock": 5
+  },
+  {
+    "product_id": 35,
+    "name": "apple",
+    "category": "fruits",
+    "price": 12000,
+    "stock": 3
+  }
+]

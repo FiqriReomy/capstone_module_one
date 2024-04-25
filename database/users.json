@@ -1,1 +1,9 @@
-[{"user_id": 1, "username": "admin", "password": "12345", "role": "admin"}, {"user_id": 2, "username": "customer01", "password": "12345", "role": "customer"}]
+[
+  { "user_id": 1, "username": "admin", "password": "12345", "role": "admin" },
+  {
+    "user_id": 2,
+    "username": "customer01",
+    "password": "12345",
+    "role": "customer"
+  }
+]

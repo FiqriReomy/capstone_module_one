@@ -10,6 +10,7 @@ def shopping_cart(users):
         user_cart = control.get_user_cart(users)
       
         if len(user_cart) == 0 :
+            support.clean_screen()
             support.error_message('Your cart is empty') 
             break
         else :
@@ -30,7 +31,7 @@ def shopping_cart(users):
 
                         previous_cart = len(checkout_cart)
                         checkout_cart = control.checkout_check(checkout_cart, user_cart, value)
-                        if len(checkout_cart) == previous_cart :
+                        if len(checkout_cart) == previous_cart:
                             support.error_message('Number already selected as a checkout item')  
                     
                         else :
@@ -52,8 +53,9 @@ def shopping_cart(users):
                                     
                                     else :
                                         balance['balance'] -= total_amount
-                                        control.remove_checkout_item(checkout_cart)
+                                        control.remove_checkout_item(checkout_cart[0])
                                         control.update_product_sold(checkout_cart)
+                                        support.add_balance(balance, total_amount, 'remove')
                                         control.update_purchase_history(checkout_cart)
                                         support.success_message("Purchase is success, Your Balance :", balance['balance'])
                                         checkout = False
@@ -78,16 +80,17 @@ def shopping_cart(users):
                     isdigits, value = support.input_check(user_input_choice)
                     
                     if isdigits and value == 0:
+                        support.clean_screen()
                         break
                     
                     elif isdigits and value > 0 and value <= len(user_cart): 
-                        
-                        control.remove_checkout_item(checkout_cart)
-                        selected_item = control.checkout_check(checkout_cart, user_cart,value)
+                        selected_item = user_cart[value-1]
+                        control.remove_checkout_item(selected_item)
                         control.update_product_quantity(selected_item, users[0]['user_id'])
                         select_product = user_cart[value - 1]
                         control.update_user_cart(select_product,user_cart, 0, 'remove')
                         support.success_message("Item is deleted from cart")
+                        support.clean_screen()
                         checkout = False
                         break
                         
@@ -99,6 +102,7 @@ def shopping_cart(users):
                     
                 
             elif isdigits and value == 0 :
+                support.clean_screen()
                 break
                 
             else :

@@ -29,16 +29,22 @@ def account_info(users):
                     newpassword = support.user_input_choice("Input your new password : ")
                     command = support.user_input_choice("Are you sure ? 1. Proceed or 0. Re-input")
                     
-                    if command == "1":
+                    if command == "1" and len(newpassword) >= 8:
                         message = control.update_account_info(users[0], newpassword)
                         support.success_message(message)
                         break
                     
-                    elif command == '0':
+                    if command == "1" and len(newpassword) < 8:
+                        support.error_message('Password must be more than 8 characters')
+                        break
+                    
+                    elif command == '0' :
                         support.clean_screen()
                         
                     else :
                         support.error_message()
+        else :
+            support.error_message()
                         
 
                              
